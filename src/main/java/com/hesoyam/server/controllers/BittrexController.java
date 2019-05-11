@@ -5,10 +5,7 @@ import com.hesoyam.server.repositories.BittrexRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,15 +25,15 @@ public class BittrexController {
         return repository.findBy_id(id);
     }
 
-    @RequestMapping(value = "/{symbol}", method = RequestMethod.GET)
-    public List<Bittrex> getCurrencyBySymbol(@PathVariable("symbol") String symbol)
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Bittrex> getCurrencyBySymbol(@RequestParam(value="symbol") String symbol)
     {
         return repository.findBySymbol(symbol, new Sort("date"));
     }
 
     @RequestMapping(value = "/{symbol}/{start_date}/{end_date}", method = RequestMethod.GET)
-    public List<Bittrex> getCurrencyByDate(@PathVariable("symbol") String symbol, @PathVariable("start_date") String start_date,
-                                           @PathVariable("end_date") String end_date)
+    public List<Bittrex> getCurrencyByDate(@PathVariable("symbol") String symbol, @PathVariable("start_date") double start_date,
+                                           @PathVariable("end_date") double end_date)
     {
         return repository.findBySymbolAndDateBetween(symbol, start_date, end_date, new Sort("date"));
     }

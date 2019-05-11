@@ -11,5 +11,5 @@ public interface BittrexRepository extends MongoRepository<Bittrex, String> {
 
     List<Bittrex>findBySymbol(String symbol, Sort sort);
 
-    List<Bittrex> findBySymbolAndDateBetween(String symbol, String start_date, String end_date, Sort sort);
+    List<Bittrex> findBySymbolAndDateBetween(String symbol, double start_date, double end_date, Sort sort);
 }

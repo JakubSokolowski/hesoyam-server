@@ -6,7 +6,7 @@ import org.springframework.data.annotation.Id;
 public class Bittrex {
     @Id
     private ObjectId _id;
-    private String date;
+    private double date;
     private String symbol;
     private double open;
     private double high;
@@ -17,36 +17,36 @@ public class Bittrex {
     {
     }
 
-    public Bittrex(ObjectId id, String date_, String symbol_, double open_,
-                    double high_, double low_, double close_)
+    public Bittrex(ObjectId id, double date, String symbol, double open,
+                    double high, double low, double close)
     {
         this._id = id;
-        this.date = date_;
-        this.symbol = symbol_;
-        this.open = open_;
-        this.high = high_;
-        this.low = low_;
-        this.close = close_;
+        this.date = date;
+        this.symbol = symbol;
+        this.open = open;
+        this.high = high;
+        this.low = low;
+        this.close = close;
     }
 
-    public String get_id()
+    public String getId()
     {
         return _id.toHexString();
     }
 
-    public void set_id(ObjectId id)
+    public void setId(ObjectId id)
     {
         this._id = id;
     }
 
     public String getDate()
     {
-        return date;
+        return String.valueOf(date);
     }
 
-    public void setDate(String date_)
+    public void setDate(double date)
     {
-        this.date = date_;
+        this.date = date;
     }
 
     public String getSymbol()
@@ -54,9 +54,9 @@ public class Bittrex {
         return symbol;
     }
 
-    public void setSymbol(String symbol_)
+    public void setSymbol(String symbol)
     {
-        this.symbol = symbol_;
+        this.symbol = symbol;
     }
 
     public String getOpen()
@@ -64,9 +64,9 @@ public class Bittrex {
         return String.valueOf(open);
     }
 
-    public void setOpen(double open_)
+    public void setOpen(double open)
     {
-        this.open = open_;
+        this.open = open;
     }
 
     public String getHigh()
@@ -74,9 +74,9 @@ public class Bittrex {
         return String.valueOf(high);
     }
 
-    public void setHigh(double high_)
+    public void setHigh(double high)
     {
-        this.high = high_;
+        this.high = high;
     }
 
     public String getLow()
@@ -84,9 +84,9 @@ public class Bittrex {
         return String.valueOf(low);
     }
 
-    public void setLow(double low_)
+    public void setLow(double low)
     {
-        this.low = low_;
+        this.low = low;
     }
 
     public String getClose()
@@ -94,8 +94,8 @@ public class Bittrex {
         return String.valueOf(close);
     }
 
-    public void setClose(double close_)
+    public void setClose(double close)
     {
-        this.close = close_;
+        this.close = close;
     }
 }
