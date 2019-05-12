@@ -29,73 +29,59 @@ public class Bittrex {
         this.close = close;
     }
 
-    public String getId()
-    {
+    public String getId(){
         return _id.toHexString();
     }
 
-    public void setId(ObjectId id)
-    {
+    public void setId(ObjectId id){
         this._id = id;
     }
 
-    public String getDate()
-    {
+    public String getDate(){
         return String.valueOf(date);
     }
 
-    public void setDate(double date)
-    {
+    public void setDate(double date){
         this.date = date;
     }
 
-    public String getSymbol()
-    {
+    public String getSymbol(){
         return symbol;
     }
 
-    public void setSymbol(String symbol)
-    {
+    public void setSymbol(String symbol){
         this.symbol = symbol;
     }
 
-    public String getOpen()
-    {
+    public String getOpen(){
         return String.valueOf(open);
     }
 
-    public void setOpen(double open)
-    {
+    public void setOpen(double open){
         this.open = open;
     }
 
-    public String getHigh()
-    {
+    public String getHigh(){
         return String.valueOf(high);
     }
 
-    public void setHigh(double high)
-    {
+    public void setHigh(double high){
         this.high = high;
     }
 
-    public String getLow()
-    {
+    public String getLow(){
         return String.valueOf(low);
     }
 
-    public void setLow(double low)
-    {
+    public void setLow(double low){
         this.low = low;
     }
 
-    public String getClose()
-    {
+    public String getClose(){
         return String.valueOf(close);
     }
 
-    public void setClose(double close)
-    {
+    public void setClose(double close){
         this.close = close;
     }
 }
