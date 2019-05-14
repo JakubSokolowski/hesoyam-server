@@ -6,7 +6,7 @@ import org.springframework.data.annotation.Id;
 public class Bittrex {
     @Id
     private ObjectId _id;
-    private double date;
+    private int date;
     private String symbol;
     private double open;
     private double high;
@@ -17,7 +17,7 @@ public class Bittrex {
     {
     }
 
-    public Bittrex(ObjectId id, double date, String symbol, double open,
+    public Bittrex(ObjectId id, int date, String symbol, double open,
                     double high, double low, double close)
     {
         this._id = id;
@@ -41,7 +41,7 @@ public class Bittrex {
         return String.valueOf(date);
     }
 
-    public void setDate(double date){
+    public void setDate(int date){
         this.date = date;
     }
 

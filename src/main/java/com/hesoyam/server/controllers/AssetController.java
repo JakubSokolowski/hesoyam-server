@@ -1,16 +1,17 @@
 package com.hesoyam.server.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hesoyam.server.models.Bittrex;
 import com.hesoyam.server.repositories.BittrexRepository;
+import com.hesoyam.server.jsonModules.BittrexJsonModule;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/bittrex")
@@ -28,45 +29,31 @@ public class AssetController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<Map<String, Object>> getAssetBySymbol(@RequestParam(value="symbol") String symbol){
-        List<Bittrex> data = repository.findBySymbol(symbol, new Sort("date"));
-        List<Map<String, Object>> response = new ArrayList<>();
-        Map<String, Object>element = new HashMap<>();
+    public List<String> getAssetBySymbol(@RequestParam(value="symbol") String symbol) throws JsonProcessingException{
+        List<Bittrex> data = repository.findDistinctBittrexBySymbol(symbol, new Sort("date"));
 
-        for(Bittrex elem : data)
-        {
-            element.put("d", elem.getDate());
-            element.put("o", elem.getOpen());
-            element.put("h", elem.getHigh());
-            element.put("l", elem.getLow());
-            element.put("c", elem.getClose());
-
-            response.add(element);
-        }
-
-        return response;
+        return serialize(data);
     }
 
     @RequestMapping(value = "/{symbol}/{start_date}/{end_date}", method = RequestMethod.GET)
-    public List<Map<String, Object>> getAssetByDate(@PathVariable("symbol") String symbol,
-                                                    @PathVariable("start_date") double start_date,
-                                                    @PathVariable("end_date") double end_date){
-        List<Bittrex> data =  repository.findBySymbolAndDateBetween(symbol, start_date, end_date,
+    public List<String> getAssetByDate(@PathVariable("symbol") String symbol,
+                                       @PathVariable("start_date") int startDate,
+                                       @PathVariable("end_date") int endDate) throws JsonProcessingException {
+        List<Bittrex> data =  repository.findDistinctBittrexBySymbolAndDateBetween(symbol, startDate, endDate,
                                 new Sort("date"));
-        List<Map<String, Object>> response = new ArrayList<>();
-        Map<String, Object>element = new HashMap<>();
 
-        for(Bittrex elem : data)
+        return serialize(data);
+    }
+
+    private List<String> serialize(List<Bittrex> data) throws JsonProcessingException{
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new BittrexJsonModule());
+        List<String> response = new ArrayList<>();
+
+        for(Bittrex b : data)
         {
-            element.put("d", elem.getDate());
-            element.put("o", elem.getOpen());
-            element.put("h", elem.getHigh());
-            element.put("l", elem.getLow());
-            element.put("c", elem.getClose());
-
-            response.add(element);
+            response.add(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(b));
         }
-
         return response;
     }
 }
