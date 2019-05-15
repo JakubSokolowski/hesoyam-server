@@ -29,8 +29,8 @@ public class RedditDataController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    List<String> getByid(@RequestParam(value="subreddit") String subreddit) throws JsonProcessingException {
-        List<Reddit> data =  repository.findRedditBySubreddit(subreddit);
+    List<String> getBySubreddit(String sub_reddit) throws JsonProcessingException {
+        List<Reddit> data =  repository.findRedditBySubreddit(sub_reddit);
 
         return serialize(data);
     }

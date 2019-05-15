@@ -29,7 +29,7 @@ public class AssetController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<String> getAssetBySymbol(@RequestParam(value="symbol") String symbol) throws JsonProcessingException{
+    public List<String> getAssetBySymbol(String symbol) throws JsonProcessingException{
         List<Bittrex> data = repository.findDistinctBittrexBySymbol(symbol, new Sort("date"));
 
         return serialize(data);

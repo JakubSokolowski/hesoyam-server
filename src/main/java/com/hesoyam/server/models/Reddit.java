@@ -34,6 +34,45 @@ public class Reddit {
     private int comments_scrapped;
     //private List<String> comments;
 
+    public Reddit(){
+
+    }
+
+    public Reddit(ObjectId _id, String author, String author_flair_css_class, String author_flair_text,
+                  boolean brand_safe, boolean contest_mode, int date, String domain, String full_link, String id,
+                  boolean is_self, String link_flair_text, boolean locked, int num_comments, boolean over_18,
+                  String permalink, int retrieved_on, int score, boolean spoiler, boolean stickied, String subreddit,
+                  String subreddit_id, String suggested_sort, String thumbnail, String title, String url,
+                  int comments_scrapped) {
+        this._id = _id;
+        this.author = author;
+        this.author_flair_css_class = author_flair_css_class;
+        this.author_flair_text = author_flair_text;
+        this.brand_safe = brand_safe;
+        this.contest_mode = contest_mode;
+        this.date = date;
+        this.domain = domain;
+        this.full_link = full_link;
+        this.id = id;
+        this.is_self = is_self;
+        this.link_flair_text = link_flair_text;
+        this.locked = locked;
+        this.num_comments = num_comments;
+        this.over_18 = over_18;
+        this.permalink = permalink;
+        this.retrieved_on = retrieved_on;
+        this.score = score;
+        this.spoiler = spoiler;
+        this.stickied = stickied;
+        this.subreddit = subreddit;
+        this.subreddit_id = subreddit_id;
+        this.suggested_sort = suggested_sort;
+        this.thumbnail = thumbnail;
+        this.title = title;
+        this.url = url;
+        this.comments_scrapped = comments_scrapped;
+    }
+
     public String get_id() {
         return _id.toHexString();
     }
