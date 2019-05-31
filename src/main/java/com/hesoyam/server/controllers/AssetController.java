@@ -39,8 +39,7 @@ public class AssetController {
     public List<String> getAssetByDate(@PathVariable("symbol") String symbol,
                                        @PathVariable("start_date") int startDate,
                                        @PathVariable("end_date") int endDate) throws JsonProcessingException {
-        List<Bittrex> data =  repository.findDistinctBittrexBySymbolAndDateBetween(symbol, startDate, endDate,
-                                new Sort("date"));
+        List<Bittrex> data =  repository.findDistinctBittrexBySymbolAndDateBetween(symbol, startDate, endDate);
 
         return serialize(data);
     }

@@ -4,6 +4,7 @@ import com.hesoyam.server.models.Bittrex;
 import org.bson.types.ObjectId;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
+
 import java.util.List;
 
 public interface BittrexRepository extends MongoRepository<Bittrex, String> {
@@ -11,5 +12,5 @@ public interface BittrexRepository extends MongoRepository<Bittrex, String> {
 
     List<Bittrex>findDistinctBittrexBySymbol(String symbol, Sort sort);
 
-    List<Bittrex> findDistinctBittrexBySymbolAndDateBetween(String symbol, int startDate, int endDate, Sort sort);
+    List<Bittrex>findDistinctBittrexBySymbolAndDateBetween(String symbol, int startDate, int endDate);
 }

@@ -11,7 +11,7 @@ public class Reddit {
     private String author_flair_text;
     private boolean brand_safe;
     private boolean contest_mode;
-    private int date;
+    private int created_utc;
     private String domain;
     private String full_link;
     private String id;
@@ -39,7 +39,7 @@ public class Reddit {
     }
 
     public Reddit(ObjectId _id, String author, String author_flair_css_class, String author_flair_text,
-                  boolean brand_safe, boolean contest_mode, int date, String domain, String full_link, String id,
+                  boolean brand_safe, boolean contest_mode, int created_utc, String domain, String full_link, String id,
                   boolean is_self, String link_flair_text, boolean locked, int num_comments, boolean over_18,
                   String permalink, int retrieved_on, int score, boolean spoiler, boolean stickied, String subreddit,
                   String subreddit_id, String suggested_sort, String thumbnail, String title, String url,
@@ -50,7 +50,7 @@ public class Reddit {
         this.author_flair_text = author_flair_text;
         this.brand_safe = brand_safe;
         this.contest_mode = contest_mode;
-        this.date = date;
+        this.created_utc = created_utc;
         this.domain = domain;
         this.full_link = full_link;
         this.id = id;
@@ -121,12 +121,12 @@ public class Reddit {
         this.contest_mode = contest_mode;
     }
 
-    public String getDate() {
-        return String.valueOf(date);
+    public String getCreatedUtc() {
+        return String.valueOf(created_utc);
     }
 
-    public void setDate(int date) {
-        this.date = date;
+    public void setCreatedUtc(int created_utc) {
+        this.created_utc = created_utc;
     }
 
     public String getDomain() {

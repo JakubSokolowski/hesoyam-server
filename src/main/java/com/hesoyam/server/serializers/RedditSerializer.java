@@ -14,7 +14,7 @@ public class RedditSerializer extends JsonSerializer<Reddit> {
         jsonGenerator.writeStartObject();
         jsonGenerator.writeStringField("id", reddit.get_id());
         jsonGenerator.writeStringField("title", reddit.getTitle());
-        jsonGenerator.writeStringField("date", reddit.getDate());
+        jsonGenerator.writeStringField("date", reddit.getCreatedUtc());
         jsonGenerator.writeStringField("full_link", reddit.getFull_link());
         jsonGenerator.writeEndObject();
     }

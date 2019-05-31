@@ -7,7 +7,6 @@ import com.hesoyam.server.models.Reddit;
 import com.hesoyam.server.repositories.RedditRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -28,19 +27,11 @@ public class RedditDataController {
         return repository.findRedditBy_id(id);
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    List<String> getBySubreddit(String sub_reddit) throws JsonProcessingException {
-        List<Reddit> data =  repository.findRedditBySubreddit(sub_reddit);
-
-        return serialize(data);
-    }
-
     @RequestMapping(value = "/{subreddit}/{start_date}/{end_date}", method = RequestMethod.GET)
     public List<String> getRedditDataByDate(@PathVariable("subreddit") String subreddit,
                                             @PathVariable("start_date") int startDate,
                                             @PathVariable("end_date") int endDate) throws JsonProcessingException {
-        List<Reddit> data =  repository.findRedditBySubredditAndDateBetween(subreddit, startDate, endDate,
-                new Sort("date"));
+        List<Reddit> data = repository.findBySubredditAndCreatedUtcBetween(subreddit, startDate, endDate);
         return serialize(data);
     }
 
