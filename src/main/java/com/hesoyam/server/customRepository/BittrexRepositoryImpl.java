@@ -1,4 +1,4 @@
-package com.hesoyam.server.repositories;
+package com.hesoyam.server.customRepository;
 
 import com.mongodb.client.DistinctIterable;
 import com.mongodb.client.MongoCursor;
@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class BittrexRepositoryImpl implements BittrexRepositoryCustom {
