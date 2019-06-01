@@ -7,7 +7,6 @@ import com.hesoyam.server.repositories.BittrexRepository;
 import com.hesoyam.server.jsonModules.BittrexJsonModule;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -28,9 +27,30 @@ public class AssetController {
         return repository.findBy_id(id);
     }
 
+    @RequestMapping(value = "/startDate/{symbol}", method = RequestMethod.GET)
+    public int getStartDate(@PathVariable("symbol") String symbol) throws JsonProcessingException {
+        Bittrex b = repository.findTopBySymbolOrderByDateAsc(symbol);
+
+        return Integer.valueOf(b.getDate());
+    }
+
+    @RequestMapping(value = "/endDate/{symbol}", method = RequestMethod.GET)
+    public int getEndDate(@PathVariable("symbol") String symbol) throws JsonProcessingException {
+        Bittrex b = repository.findTopBySymbolOrderByDateDesc(symbol);
+
+        return Integer.valueOf(b.getDate());
+    }
+
+    @RequestMapping("/symbols")
+    public List<String> getPossibleSymbols() throws JsonProcessingException {
+        List<String> symbol = repository.getPossibleSymbols();
+
+        return symbol;
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     public List<String> getAssetBySymbol(String symbol) throws JsonProcessingException{
-        List<Bittrex> data = repository.findDistinctBittrexBySymbol(symbol, new Sort("date"));
+        List<Bittrex> data = repository.findDistinctBittrexBySymbol(symbol);
 
         return serialize(data);
     }

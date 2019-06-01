@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.repository.Query;
 import java.util.List;
 
 public interface RedditRepository extends MongoRepository<Reddit, String> {
+
     Reddit findRedditBy_id(ObjectId _id);
 
     @Query("{subreddit : ?0, created_utc : {$gt: ?1, $lt: ?2}}")
