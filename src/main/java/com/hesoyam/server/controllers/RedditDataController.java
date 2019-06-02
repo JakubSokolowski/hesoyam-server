@@ -35,15 +35,16 @@ public class RedditDataController {
         return serialize(data);
     }
 
-
     private List<String> serialize(List<Reddit> data) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new RedditJsonModule());
         List<String> response = new ArrayList<>();
 
+        String temp;
         for(Reddit r : data)
         {
-            response.add(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(r));
+            temp = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(r);
+            response.add(temp.replaceAll("\\n|\"", ""));
         }
         return response;
     }

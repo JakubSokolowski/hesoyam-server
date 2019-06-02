@@ -1,5 +1,6 @@
 package com.hesoyam.server.controllers;
 
+import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hesoyam.server.models.Bittrex;
@@ -69,9 +70,11 @@ public class AssetController {
         objectMapper.registerModule(new BittrexJsonModule());
         List<String> response = new ArrayList<>();
 
+        String temp;
         for(Bittrex b : data)
         {
-            response.add(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(b));
+            temp = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(b);
+            response.add(temp.replaceAll("\\n|\"", ""));
         }
         return response;
     }
