@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.repository.Query;
 
 import java.util.List;
 
-public interface RedditRepository extends MongoRepository<Reddit, String> {
+public interface RedditRepository extends MongoRepository<Reddit, ObjectId> {
 
     Reddit findRedditBy_id(ObjectId _id);
 
