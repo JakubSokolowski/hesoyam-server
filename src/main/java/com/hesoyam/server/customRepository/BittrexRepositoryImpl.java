@@ -1,5 +1,6 @@
 package com.hesoyam.server.customRepository;
 
+import com.hesoyam.server.repositories.BittrexRepositoryCustom;
 import com.mongodb.client.DistinctIterable;
 import com.mongodb.client.MongoCursor;
 import org.springframework.beans.factory.annotation.Autowired;

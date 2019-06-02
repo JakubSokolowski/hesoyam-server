@@ -1,4 +1,4 @@
-package com.hesoyam.server.customRepository;
+package com.hesoyam.server.repositories;
 
 import java.util.List;
 

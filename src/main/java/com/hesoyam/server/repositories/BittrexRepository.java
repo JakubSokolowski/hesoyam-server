@@ -1,6 +1,5 @@
 package com.hesoyam.server.repositories;
 
-import com.hesoyam.server.customRepository.BittrexRepositoryCustom;
 import com.hesoyam.server.models.Bittrex;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
