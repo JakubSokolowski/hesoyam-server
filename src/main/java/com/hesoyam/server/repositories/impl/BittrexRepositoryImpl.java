@@ -1,4 +1,4 @@
-package com.hesoyam.server.customRepository;
+package com.hesoyam.server.repositories.impl;
 
 import com.hesoyam.server.repositories.BittrexRepositoryCustom;
 import com.mongodb.client.DistinctIterable;
