@@ -29,14 +29,6 @@ public class Bittrex {
         this.close = close;
     }
 
-    public String getId(){
-        return _id.toHexString();
-    }
-
-    public void setId(ObjectId id){
-        this._id = id;
-    }
-
     public String getDate(){
         return String.valueOf(date);
     }

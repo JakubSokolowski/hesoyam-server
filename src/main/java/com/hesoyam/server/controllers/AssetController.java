@@ -1,16 +1,12 @@
 package com.hesoyam.server.controllers;
 
-import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hesoyam.server.models.Bittrex;
 import com.hesoyam.server.repositories.BittrexRepository;
-import com.hesoyam.server.jsonModules.BittrexJsonModule;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -50,32 +46,14 @@ public class AssetController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<String> getAssetBySymbol(String symbol) throws JsonProcessingException{
-        List<Bittrex> data = repository.findDistinctBittrexBySymbol(symbol);
-
-        return serialize(data);
+    public List<Bittrex> getAssetBySymbol(String symbol) throws JsonProcessingException{
+        return repository.findDistinctBittrexBySymbol(symbol);
     }
 
     @RequestMapping(value = "/{symbol}/{start_date}/{end_date}", method = RequestMethod.GET)
-    public List<String> getAssetByDate(@PathVariable("symbol") String symbol,
+    public List<Bittrex> getAssetByDate(@PathVariable("symbol") String symbol,
                                        @PathVariable("start_date") int startDate,
                                        @PathVariable("end_date") int endDate) throws JsonProcessingException {
-        List<Bittrex> data =  repository.findDistinctBittrexBySymbolAndDateBetween(symbol, startDate, endDate);
-
-        return serialize(data);
-    }
-
-    private List<String> serialize(List<Bittrex> data) throws JsonProcessingException{
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new BittrexJsonModule());
-        List<String> response = new ArrayList<>();
-
-        String temp;
-        for(Bittrex b : data)
-        {
-            temp = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(b);
-            response.add(temp.replaceAll("\\n|\"", ""));
-        }
-        return response;
+        return repository.findDistinctBittrexBySymbolAndDateBetween(symbol, startDate, endDate);
     }
 }
