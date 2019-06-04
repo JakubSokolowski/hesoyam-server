@@ -123,4 +123,80 @@ public class Reddit {
     public String getAuthor(){
         return author;
     }
+
+    public String getAuthor_flair_css_class() {
+        return author_flair_css_class;
+    }
+
+    public String getAuthor_flair_text() {
+        return author_flair_text;
+    }
+
+    public boolean isBrand_safe() {
+        return brand_safe;
+    }
+
+    public boolean isContest_mode() {
+        return contest_mode;
+    }
+
+    public String getDomain() {
+        return domain;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public boolean isIs_self() {
+        return is_self;
+    }
+
+    public String getLink_flair_text() {
+        return link_flair_text;
+    }
+
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public boolean isOver_18() {
+        return over_18;
+    }
+
+    public String getPermalink() {
+        return permalink;
+    }
+
+    public int getRetrieved_on() {
+        return retrieved_on;
+    }
+
+    public boolean isSpoiler() {
+        return spoiler;
+    }
+
+    public boolean isStickied() {
+        return stickied;
+    }
+
+    public String getSubreddit_id() {
+        return subreddit_id;
+    }
+
+    public String getSuggested_sort() {
+        return suggested_sort;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public int getComments_scrapped() {
+        return comments_scrapped;
+    }
 }
