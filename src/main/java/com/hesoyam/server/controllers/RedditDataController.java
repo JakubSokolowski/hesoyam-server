@@ -32,7 +32,8 @@ public class RedditDataController {
     }
 
     @RequestMapping(value = "/newposts", method = RequestMethod.POST)
-    public void saveRedditPosts(@ModelAttribute("reddit") List<Reddit> redditPosts){
+    @ResponseBody
+    public void saveRedditPosts(@RequestBody List<Reddit> redditPosts){
         for(Reddit r : redditPosts){
             repository.save(r);
         }

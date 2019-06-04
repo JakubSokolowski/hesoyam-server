@@ -119,4 +119,8 @@ public class Reddit {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public String getAuthor(){
+        return author;
+    }
 }
