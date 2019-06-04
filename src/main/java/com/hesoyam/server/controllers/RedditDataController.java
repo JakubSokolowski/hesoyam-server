@@ -5,6 +5,8 @@ import com.hesoyam.server.models.Reddit;
 import com.hesoyam.server.repositories.RedditRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,10 +35,11 @@ public class RedditDataController {
 
     @RequestMapping(value = "/newposts", method = RequestMethod.POST)
     @ResponseBody
-    public void saveRedditPosts(@RequestBody List<Reddit> redditPosts){
+    public ResponseEntity<Object> saveRedditPosts(@RequestBody List<Reddit> redditPosts){
         for(Reddit r : redditPosts){
             repository.save(r);
         }
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @RequestMapping("/subreddits")
