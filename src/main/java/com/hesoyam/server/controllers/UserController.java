@@ -28,7 +28,8 @@ public class UserController{
         if(userService.save(user)){
             return new ResponseEntity<String>("You have successfully registered!", HttpStatus.OK);
         }
-        else return new ResponseEntity<String[]>( new String[] {"Someone already has that username!"} ,
+        else
+            return new ResponseEntity<String[]>( new String[] {"Someone already has that username!"} ,
                             HttpStatus.BAD_REQUEST);
     }
 

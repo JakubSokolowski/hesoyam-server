@@ -30,4 +30,21 @@ public class RedditDataController {
                                             @PathVariable("end_date") int endDate) throws JsonProcessingException {
         return repository.findBySubredditAndCreatedUtcBetween(subreddit, startDate, endDate);
     }
+
+    @RequestMapping(value = "/newposts", method = RequestMethod.POST)
+    public void saveRedditPosts(@ModelAttribute("reddit") List<Reddit> redditPosts){
+        for(Reddit r : redditPosts){
+            repository.save(r);
+        }
+    }
+
+    @RequestMapping("/subreddits")
+    public List<String> getPossibleSubreddits(){
+        return repository.getPossibleSubreddits();
+    }
+
+    @RequestMapping(value = "/newest/{subreddit}", method = RequestMethod.GET)
+    public Reddit getNewestPost(@PathVariable("subreddit") String subreddit){
+        return repository.findTopBySubredditOrderByCreatedUtcDesc(subreddit);
+    }
 }
