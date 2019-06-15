@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  mongodb:
+    image: mongo
+    container_name: hesoyam-mongo
+    ports:
+      - '27017'
+  web:
+    container_name: hesoyam-server
+    build: .
+    ports:
+      - '8080'
+    volumes:
+      - '/tmp'
+    links:
+      - mongodb
